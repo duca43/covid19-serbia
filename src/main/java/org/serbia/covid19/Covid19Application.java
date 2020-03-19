@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Covid19Application {
 
 //        private static final String covid19URL = "https://covid19.rs/";
-    
+
     @RequestMapping("/")
     public String index() {
         return "index.html";
