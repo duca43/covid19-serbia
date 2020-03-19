@@ -3,18 +3,12 @@ package org.serbia.covid19;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @SpringBootApplication
 public class Covid19Application {
 
 //        private static final String covid19URL = "https://covid19.rs/";
-
-    @RequestMapping("/")
-    public String index() {
-        return "index.html";
-    }
 
     public static void main(final String[] args) {
         SpringApplication.run(Covid19Application.class, args);
