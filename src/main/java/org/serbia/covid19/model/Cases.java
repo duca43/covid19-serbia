@@ -3,7 +3,9 @@ package org.serbia.covid19.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,8 +14,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 @Entity
-public class Graph {
+public class Cases {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
