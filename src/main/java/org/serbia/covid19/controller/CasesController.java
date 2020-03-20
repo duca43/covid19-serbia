@@ -47,8 +47,8 @@ public class CasesController {
 	public ResponseEntity<Cases> updateCases(@PathVariable(value = "id") Long casesId, @Valid @RequestBody Cases casesValues) throws ResourceNotFoundException {
 		Cases cases = casesRepository.findById(casesId).orElseThrow(() -> new ResourceNotFoundException("Cases not found, id: " + casesId));
 		
-		Cases.builder().numberOfCases(casesValues.getNumberOfCases()).build();
-		Cases.builder().day(casesValues.getDay()).build();
+		Cases.builder().numberOfCases(casesValues.getNumberOfCases())
+					   .day(casesValues.getDay()).build();
 		
 		return ResponseEntity.ok(this.casesRepository.save(cases));
 	}

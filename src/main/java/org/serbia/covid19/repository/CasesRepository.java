@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CasesRepository extends JpaRepository<Cases, Long>{
-	
+	Cases findTopByOrderByIdDesc();
 }
