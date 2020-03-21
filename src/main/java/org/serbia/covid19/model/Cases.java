@@ -20,7 +20,13 @@ public class Cases {
     private Long id;
 
     @Column(nullable = false)
-    private Integer numberOfCases;
+    private Integer confirmedCases;
+
+    @Column(nullable = false)
+    private Integer deathCases;
+
+    @Column(nullable = false)
+    private Integer recoveredCases;
 
     @Column(nullable = false, unique = true)
     private LocalDate date;

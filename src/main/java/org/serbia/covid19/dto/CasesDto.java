@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class CasesDto {
 
     private Long id;
-    private Integer numberOfCases;
+    private Integer confirmedCases;
+    private Integer deathCases;
+    private Integer recoveredCases;
     private String date;
 }
