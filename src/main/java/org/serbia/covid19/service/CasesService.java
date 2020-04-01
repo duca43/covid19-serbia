@@ -48,7 +48,7 @@ public class CasesService {
                 .collect(Collectors.toList());
     }
 
-    @Scheduled(cron = "0 2,5,15,20,46 7,17,23 * * *")
+    @Scheduled(cron = "0 2,5,15,20,49 7,17,21 * * *")
     @EventListener(ApplicationReadyEvent.class)
     public void scrapeCases() {
         final WebClient client = new WebClient();
