@@ -68,7 +68,8 @@ public class CasesService {
 
             if (serbiaCasesRow != null) {
                 final List<HtmlTableCell> serbiaCasesRowCells = serbiaCasesRow.getCells();
-                final int confirmedCases = Integer.parseInt(serbiaCasesRowCells.get(1).getVisibleText());
+                final String confirmedCasesString = serbiaCasesRowCells.get(1).getVisibleText().replaceAll(",","");
+                final int confirmedCases = Integer.parseInt(confirmedCasesString);
                 final int deathCases = Integer.parseInt(serbiaCasesRowCells.get(3).getVisibleText());
                 final int recoveredCases = Integer.parseInt(serbiaCasesRowCells.get(5).getVisibleText());
                 this.writeValue(confirmedCases, deathCases, recoveredCases);
