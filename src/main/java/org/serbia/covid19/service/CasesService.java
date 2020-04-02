@@ -48,7 +48,7 @@ public class CasesService {
                 .collect(Collectors.toList());
     }
 
-    @Scheduled(cron = "0 2,5,15,20,49 7,17,21 * * *")
+    @Scheduled(cron = "0 2,5,15,20,30 14 * * *")
     @EventListener(ApplicationReadyEvent.class)
     public void scrapeCases() {
         final WebClient client = new WebClient();
@@ -68,10 +68,12 @@ public class CasesService {
 
             if (serbiaCasesRow != null) {
                 final List<HtmlTableCell> serbiaCasesRowCells = serbiaCasesRow.getCells();
-                final String confirmedCasesString = serbiaCasesRowCells.get(1).getVisibleText().replaceAll(",","");
+                final String confirmedCasesString = serbiaCasesRowCells.get(1).getVisibleText().replaceAll(",", "");
                 final int confirmedCases = Integer.parseInt(confirmedCasesString);
-                final int deathCases = Integer.parseInt(serbiaCasesRowCells.get(3).getVisibleText());
-                final int recoveredCases = Integer.parseInt(serbiaCasesRowCells.get(5).getVisibleText());
+                final String deathCasesString = serbiaCasesRowCells.get(3).getVisibleText().replaceAll(",", "");
+                final int deathCases = Integer.parseInt(deathCasesString);
+                final String recoveredCasesString = serbiaCasesRowCells.get(5).getVisibleText().replaceAll(",", "");
+                final int recoveredCases = Integer.parseInt(recoveredCasesString);
                 this.writeValue(confirmedCases, deathCases, recoveredCases);
             }
         } catch (final IOException e) {
@@ -84,7 +86,7 @@ public class CasesService {
         final LocalDate today = LocalDate.now();
         log.info("Writing number of cases for following date: {}", today);
 
-        Cases cases = this.casesRepository.findTopByOrderByIdDesc();
+        Cases cases = this.casesRepository.findByDate(today);
 
         if (cases == null || !today.isEqual(cases.getDate())) {
             log.info("First recording of cases at date {}. Confirmed cases: {}. Death cases: {}. Recovered cases: {}.",
