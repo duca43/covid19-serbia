@@ -38,7 +38,7 @@ public class CasesService {
     }
 
     public List<CasesDto> findAll() {
-        return this.casesRepository.findAll()
+        return this.casesRepository.findAllByOrderByDate()
                 .stream()
                 .map(cases -> {
                     final CasesDto casesDto = this.modelMapper.map(cases, CasesDto.class);
